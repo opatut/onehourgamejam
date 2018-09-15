@@ -52,11 +52,11 @@ func _process(delta):
     if timeLeft <= 0:
         lose()
 
-    get_node("../../gui/starsLeft").text = str(count_stars())
+    get_node("../../guiCanvas/gui/starsLeft").value = str(count_stars())
 
     var minutes = (int(ceil(timeLeft)) % 60) / 60
     var seconds = int(ceil(timeLeft)) - 60 * minutes
-    get_node("../../gui/timeLeft").text = "%d:%02d" % [minutes, seconds]
+    get_node("../../guiCanvas/gui/timeLeft").value = "%d:%02d" % [minutes, seconds]
 
 func onClickIsland(island):
     if playerIsland != island:
@@ -81,7 +81,7 @@ func count_stars():
     return c
 
 func win():
-    get_tree().change_scene("res://win.tscn")
+    get_tree().change_scene("res://scenes/win.tscn")
 
 func lose():
-    get_tree().change_scene("res://lose.tscn")
+    get_tree().change_scene("res://scenes/lose.tscn")
