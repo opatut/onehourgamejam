@@ -4,7 +4,7 @@
 [ext_resource path="res://gfx/player.png" type="Texture" id=2]
 [ext_resource path="res://sfx/plop.ogg" type="AudioStream" id=3]
 
-[node name="player" type="Node2D"]
+[node name="player" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]

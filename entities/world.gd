@@ -1,12 +1,15 @@
 extends Node2D
 
 onready var Island = preload("res://entities/island.tscn")
+onready var Bridge = preload("res://entities/bridge.tscn")
 
 const WIDTH = 800
 const HEIGHT = 600
 const MAX_JUMP = 250
 
 onready var playerNode = get_node("../player")
+onready var islands = get_node("islands")
+onready var bridges = get_node("bridges")
 var playerIsland
 var timeLeft
 
@@ -14,15 +17,30 @@ func _ready():
     randomize()
     generate()
 
+const BUTTONS = [KEY_Q, KEY_W, KEY_E, KEY_R]
+
+func _input(e):
+    if e is InputEventKey and e.pressed:
+        var idx = BUTTONS.find(e.scancode)
+        if idx != -1:
+            press_button(idx)
+
+func press_button(idx):
+    pass
+
+
+func get_bridges_from(node):
+    birdget
+
 func generate():
-    for child in get_children():
+    for child in islands.get_children():
         child.queue_free()
 
     timeLeft = 5
 
     var i = Island.instance()
     i.position = Vector2(0, 0)
-    add_child(i)
+    islands.add_child(i)
     playerIsland = i
 
     for x in 12:
@@ -33,7 +51,7 @@ func generate():
             i.star = randf() < 0.5
             var too_close = false
             var too_far = true
-            for child in get_children():
+            for child in islands.get_children():
                 var dist =(i.position - child.position).length()
                 if  dist < 100:
                     too_close = true
@@ -42,8 +60,19 @@ func generate():
                     too_far = false
 
             if not too_close and not too_far:
-                add_child(i)
+                islands.add_child(i)
                 break
+
+    var islandNodes = islands.get_children()
+    for i in range(len(islandNodes)):
+        for j in range(i, len(islandNodes)):
+            var dist = (islandNodes[i].position - islandNodes[j].position).length()
+            if dist < MAX_JUMP:
+                var b = Bridge.instance()
+                bridges.add_child(b)
+                b.from = b.get_path_to(islandNodes[i])
+                b.to = b.get_path_to(islandNodes[j])
+
 
 
 func _process(delta):
@@ -75,7 +104,7 @@ func onClickIsland(island):
 
 func count_stars():
     var c = 0
-    for child in get_children():
+    for child in islands.get_children():
         if child.star:
             c += 1
     return c

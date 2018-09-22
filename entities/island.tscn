@@ -9,7 +9,7 @@
 custom_solver_bias = 0.0
 radius = 28.2319
 
-[node name="island" type="Area2D"]
+[node name="island" type="Area2D" index="0"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -23,6 +23,7 @@ star = false
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
+visible = false
 scale = Vector2( 0.237226, 0.237226 )
 texture = ExtResource( 2 )
 

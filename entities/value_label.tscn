@@ -26,7 +26,7 @@ script = ExtResource( 1 )
 _sections_unfolded = [ "Rect", "custom_constants" ]
 value = null
 label = null
-rightAlign = null
+rightAlign = true
 
 [node name="value" type="Label" parent="." index="0"]
 
@@ -48,6 +48,7 @@ custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 2
 custom_constants/shadow_offset_y = 2
 text = "5"
+align = 2
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -72,6 +73,7 @@ custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "stars left"
+align = 2
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
